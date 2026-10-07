@@ -22,6 +22,7 @@
     "media:audit": "node scripts/audit-media-licences.mjs",
     "payment:rehearse": "node scripts/rehearse-paystack.mjs",
     "backup:rehearse": "node scripts/rehearse-backup-restore.mjs",
+    "database:migrate-neon": "node scripts/migrate-neon-to-addiny.mjs",
     "launch:review": "node scripts/production-review.mjs",
     "push:keys": "web-push generate-vapid-keys",
     "chat:configure-local": "node scripts/configure-secure-chat.mjs",

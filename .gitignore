@@ -34,3 +34,4 @@ server/data/
 server/uploads/
 test-results/
 playwright-report/
+migration-backups/
