@@ -7,7 +7,7 @@
     "dev": "concurrently -k -n API,WEB -c yellow,cyan \"npm:dev:api\" \"npm:dev:web\"",
     "dev:web": "vite",
     "dev:api": "node --watch server/index.js",
-    "start": "node server/index.js",
+    "start": "node scripts/start-with-migration.mjs",
     "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "vite build",
     "lint": "eslint . --quiet",

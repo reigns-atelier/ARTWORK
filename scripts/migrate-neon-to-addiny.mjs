@@ -114,7 +114,12 @@ try {
 
   const sourceCounts = await rowCounts(source, sourceTables);
   await destination.query('BEGIN');
-  await destination.query("SELECT pg_advisory_xact_lock(hashtext('reigns_atelier_state_write'))");
+  const lock = await destination.query(
+    "SELECT pg_try_advisory_xact_lock(hashtext('reigns_atelier_state_write')) AS locked",
+  );
+  if (!lock.rows[0]?.locked) {
+    throw new Error('Another database write or migration is still running. Retry after it finishes.');
+  }
   await destination.query(
     `TRUNCATE ${sourceTables.map(table => `public.${quoteIdentifier(table)}`).join(', ')} RESTART IDENTITY CASCADE`,
   );
